@@ -1,0 +1,21 @@
+def water_jug_problem(capacity_jug1, capacity_jug2, target_amount):
+    jug1 = 0
+    jug2 = 0
+
+    while jug1 != target_amount and jug2 != target_amount:
+        print(f"Jug1: {jug1}  Jug2: {jug2}")
+
+        # Fill Jug 1
+        if jug1 < capacity_jug1:
+            jug1 = capacity_jug1
+        else:
+            # Pour Jug 1 into Jug 2
+            pour_amount = min(jug1, capacity_jug2 - jug2)
+            jug1 -= pour_amount
+            jug2 += pour_amount
+
+        # Empty Jug 2
+        if jug2 == capacity_jug2:
+            jug2 = 0
+
+    print(f"Jug1: {jug1}  Jug2: {jug2}")
