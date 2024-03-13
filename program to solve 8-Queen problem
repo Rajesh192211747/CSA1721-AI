@@ -1,0 +1,12 @@
+def is_safe(b, r, c, n):
+    return all(b[i][c] == b[i][c - r + i] == b[i][c + r - i] == 0 for i in range(r)) if r else 1
+
+def solve(b, r, n):
+    if r == n:
+        print('\n'.join([' '.join(map(str, row)) for row in b]), '\n')
+        return
+    for c in range(n):
+        if is_safe(b, r, c, n):
+            b[r][c], solve(b, r + 1, n), b[r][c] = 1
+
+solve([[0] * 8 for _ in range(8)], 0, 8)
